@@ -1,6 +1,16 @@
 function CreateMeeting() {
+
+    function handleSubmit(e) {
+        e.preventDefault()
+    }
+
     return(
-            <button>Create</button>
+        <form onSubmit={handleSubmit}>
+            <fieldset>
+                <legend>Create meeting</legend>
+                <button>Create</button>
+            </fieldset>
+        </form>
         )
     }
 
