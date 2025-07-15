@@ -9,7 +9,7 @@ function JoinMeeting() {
             <fieldset>
                 <legend>Join meeting</legend>
                 <input placeholder="Meeting link" />
-                <button>Join</button>
+                <input type="submit" value="Join" />
             </fieldset>
         </form>
     )
