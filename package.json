@@ -1,12 +1,12 @@
 {
-  "homepage": "https://janinaalona.github.io/crabtalk",
+  "homepage": "https://janinaalona.github.io/crabtalk/",
   "name": "crabtalk",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --base=/crabtalk/",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
