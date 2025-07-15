@@ -9,7 +9,7 @@ function CreateMeeting() {
         <form onSubmit={handleSubmit}>
             <fieldset>
                 <legend>Create meeting</legend>
-                <button>Create</button>
+                <input type="submit" value="Create" />
             </fieldset>
         </form>
         )
