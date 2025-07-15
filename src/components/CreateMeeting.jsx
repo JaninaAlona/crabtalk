@@ -20,15 +20,17 @@ function CreateMeeting() {
     }
 
     return(
-        <form onSubmit={handleSubmit}>
-            <fieldset className="create-meet">
-                <legend>Create meeting</legend>
-                <input type="submit" value="Create" />
-                <Option id="use-chat" value="chat" label="Use Chat" />
-                <Option id="use-voice" value="voice" label="Audio Call" />
-                <Option id="use-video" value="video" label="Video Call" />
-            </fieldset>
-        </form>
+        <>
+            <form onSubmit={handleSubmit}>
+                <fieldset className="create-meet">
+                    <legend>Create meeting</legend>
+                    <input type="submit" value="Create" />
+                </fieldset>
+            </form>
+            <Option id="use-chat" value="chat" label="Use Chat" />
+            <Option id="use-voice" value="voice" label="Audio Call" />
+            <Option id="use-video" value="video" label="Video Call" />
+        </>
         )
     }
 
