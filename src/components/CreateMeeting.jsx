@@ -2,6 +2,7 @@ function CreateMeeting() {
 
     function handleSubmit(e) {
         e.preventDefault()
+        console.log("here")
     }
 
     return(
