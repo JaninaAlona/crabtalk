@@ -7,7 +7,11 @@ function CreateMeeting() {
         if (isVisible) {
             return (
                 <>
-                    <input type="checkbox" id={props.id} name="option" value={props.value} />
+                    if(props.id==="use-chat") {
+                        <input type="checkbox" id={props.id} name="option" value={props.value} checked />
+                    } else {
+                        <input type="checkbox" id={props.id} name="option" value={props.value} />
+                    }
                     <label for={props.id}>{props.label}</label>
                 </>
             )
@@ -25,11 +29,9 @@ function CreateMeeting() {
                     <fieldset className="create-meet">
                         <legend>Create meeting</legend>
                         <input type="submit" value="Create" />
-                    </fieldset>
-                    <fieldset>
                         <Option id="use-chat" value="chat" label="Use Chat" checked />
-                        <Option id="use-voice" value="voice" label="Audio Call" />
-                        <Option id="use-video" value="video" label="Video Call" />
+                        <Option id="use-voice" value="voice" label="Audio Call" check="false" />
+                        <Option id="use-video" value="video" label="Video Call" check="false" />
                     </fieldset>
                 </form>
             </>
