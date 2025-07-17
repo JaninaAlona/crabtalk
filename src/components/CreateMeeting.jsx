@@ -5,16 +5,21 @@ function CreateMeeting() {
 
     function Option(props) {
         if (isVisible) {
-            return (
-                <>
-                    if(props.id==="use-chat") {
+            if(props.id==="use-chat") {
+                return (
+                    <>
                         <input type="checkbox" id={props.id} name="option" value={props.value} checked />
-                    } else {
+                        <label for={props.id}>{props.label}</label>
+                    </>
+                )
+            } else {
+                return (
+                    <>
                         <input type="checkbox" id={props.id} name="option" value={props.value} />
-                    }
-                    <label for={props.id}>{props.label}</label>
-                </>
-            )
+                        <label for={props.id}>{props.label}</label>
+                    </>
+                ) 
+            }
         } 
     }
     
