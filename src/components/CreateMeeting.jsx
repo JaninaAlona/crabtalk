@@ -5,6 +5,7 @@ function CreateMeeting() {
 
     function Option(props) {
         if (isVisible) {
+            console.log(props); 
             if(props.id==="use-chat") {
                 return (
                     <>
