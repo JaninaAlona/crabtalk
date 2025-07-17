@@ -14,7 +14,7 @@ function CreateMeeting() {
         } 
     }
 
-    function Participants() {
+    function Participants(props) {
         if (isVisible===1) {
             return (
                 <>
