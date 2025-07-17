@@ -25,6 +25,8 @@ function CreateMeeting() {
                     <fieldset className="create-meet">
                         <legend>Create meeting</legend>
                         <input type="submit" value="Create" />
+                    </fieldset>
+                    <fieldset>
                         <Option id="use-chat" value="chat" label="Use Chat" checked />
                         <Option id="use-voice" value="voice" label="Audio Call" />
                         <Option id="use-video" value="video" label="Video Call" />
