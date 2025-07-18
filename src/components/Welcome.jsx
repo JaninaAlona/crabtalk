@@ -1,5 +1,5 @@
-import JoinMeeting from "./JoinMeeting"
-import CreateMeeting from "./CreateMeeting"
+import JoinMeeting from "./JoinMeeting.jsx"
+import CreateMeeting from "./CreateMeeting.jsx"
 
 function Welcome() {
     return (
