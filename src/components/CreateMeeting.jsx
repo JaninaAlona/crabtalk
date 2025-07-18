@@ -1,12 +1,12 @@
 import { useState } from "react"
+import Password from "./Password"
 
 function CreateMeeting() {
-    let [isCreated, setIsCreated] = useState(false)
 
     function MediaOption(props) {
         return (
             <>
-                <input type="checkbox" id={props.id} name="option" value={props.value} checked={props.checked} />
+                <input type="checkbox" id={props.id} name={props.name} value={props.value} checked={props.checked} />
                 <label for={props.id}>{props.label}</label>
             </>
         )
@@ -16,7 +16,7 @@ function CreateMeeting() {
         return (
             <>
                 <label for={props.id}>{props.label}</label>
-                <input type="number" id={props.id} name="option" min="2" max="100" />
+                <input type="number" id={props.id} name={props.name} value="100" min="2" max="100" />
             </>
         )
     }
@@ -31,10 +31,11 @@ function CreateMeeting() {
                     <fieldset className="create-meet">
                         <legend>Create meeting</legend>
                         <input type="submit" value="Create" />
-                        <MediaOption id="use-chat" value="chat" label="Use Chat" checked="checked" />
-                        <MediaOption id="use-voice" value="voice" label="Audio Call" />
-                        <MediaOption id="use-video" value="video" label="Video Call" />
+                        <MediaOption id="use-chat" name="message-type" value="chat" label="Text Chat" checked="checked" />
+                        <MediaOption id="use-voice" name="message-type" value="voice" label="Audio Call" />
+                        <MediaOption id="use-video" name="message-type" value="video" label="Video Call" />
                         <Participants id="people" label="Max. participants:" />
+                        <Password pwID="setPW" pwLable="Use password:" pwName="meetingPW" showID="showPW" showName="showPW" value="no" showLabel="Show Password" />
                     </fieldset>
                 </form>
             </>
