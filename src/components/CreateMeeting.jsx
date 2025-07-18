@@ -35,7 +35,7 @@ function CreateMeeting() {
                         <MediaOption id="use-voice" name="message-type" value="voice" label="Audio Call" />
                         <MediaOption id="use-video" name="message-type" value="video" label="Video Call" />
                         <Participants id="people" label="Max. participants:" />
-                        <Password pwID="setPW" pwLable="Use password:" pwName="meetingPW" showID="showPW" showName="showPW" value="no" showLabel="Show Password" />
+                        <Password pwID="setPW" pwLabel="Use password:" pwName="meetingPW" showID="showPW" showName="showPW" value="no" showLabel="Show Password" />
                     </fieldset>
                 </form>
             </>
