@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useRef } from 'react';
 import Password from './Password.jsx';
+import CustomCheckbox from './CustomCheckbox.jsx';
 
 function CreateMeeting() {
 
@@ -9,7 +10,6 @@ function CreateMeeting() {
     const handleValueChange = () => {
         if (inputRef.current.value !== null) {
             setValue(inputRef.current.value)
-            console.log(inputRef.current.value)
         }
     }
     let [checkedChat, setCheckedChat] = useState(true)
@@ -27,10 +27,7 @@ function CreateMeeting() {
 
     function MediaOption(props) {
         return (
-            <>
-                <input type="checkbox" id={props.id} name={props.name} value={props.value} checked={props.checked} onChange={props.onChange} />
-                <label htmlFor={props.htmlFor}>{props.label}</label>
-            </>
+            <CustomCheckbox htmlFor={props.htmlFor} label={props.label} id={props.id} name={props.name} value={props.value} checked={props.checked} onChange={props.onChange} />
         )
     }
 
@@ -38,7 +35,7 @@ function CreateMeeting() {
         return (
             <>
                 <label htmlFor={props.htmlFor}>{props.label}</label>
-                <input ref={inputRef} type="number" id={props.id} name={props.name} value={props.value} onInput={props.onInput} />
+                <input ref={inputRef} className="welcome-input" type="number" id={props.id} name={props.name} value={props.value} onInput={props.onInput} />
             </>
         )
     }
@@ -53,12 +50,22 @@ function CreateMeeting() {
                 <form onSubmit={handleSubmit}>
                     <fieldset className="create-meet">
                         <legend>Create meeting</legend>
-                        <input type="submit" value="Create" />
-                        <MediaOption id="use-chat" htmlFor="use-chat" name="message-type" value="chat" label="Text Chat" checked={checkedChat} onChange={handleCheckedChatChange} />
-                        <MediaOption id="use-voice" htmlFor="use-voice" name="message-type" value="voice" label="Audio Call" checked={checkedVoice} onChange={handleCheckedVoiceChange} />
-                        <MediaOption id="use-video" htmlFor="use-video" name="message-type" value="video" label="Video Call" checked={checkedVideo} onChange={handleCheckedVideoChange} />
-                        <Participants id="people" htmlFor="people" name="participants" label="Max. participants:" />
-                        <Password pwID="setPW" pwLabel="Use password:" pwName="meetingPW" showID="showPW" showName="showPW" showLabel="Show Password" />
+                        <div>
+                            <div className="welcome-gui-con">
+                                <input className="meeting-btn" type="submit" value="Create" />
+                            </div>
+                            <div className="welcome-gui-con">
+                                <MediaOption id="use-chat" htmlFor="use-chat" name="message-type" value="chat" label="Text Chat" checked={checkedChat} onChange={handleCheckedChatChange} />
+                                <MediaOption id="use-voice" htmlFor="use-voice" name="message-type" value="voice" label="Audio Call" checked={checkedVoice} onChange={handleCheckedVoiceChange} />
+                                <MediaOption id="use-video" htmlFor="use-video" name="message-type" value="video" label="Video Call" checked={checkedVideo} onChange={handleCheckedVideoChange} />
+                            </div>
+                            <div className="welcome-gui-con">
+                                <Participants id="people" htmlFor="people" name="participants" label="Max. participants:" />
+                            </div>
+                            <div className="welcome-gui-con">
+                                <Password pwID="setPW" pwLabel="Use password:" pwName="createMeetingPW" id="showPW" name="hidePW" htmlFor="showPW" label="Show Password" value="createPW" />
+                            </div>
+                        </div>
                     </fieldset>
                 </form>
             </>
