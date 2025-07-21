@@ -48,9 +48,9 @@ function CreateMeeting() {
     return(
             <>
                 <form onSubmit={handleSubmit}>
-                    <fieldset className="create-meet">
+                    <fieldset>
                         <legend>Create meeting</legend>
-                        <div>
+                        <div className="create-meet">
                             <div className="welcome-gui-con">
                                 <input className="meeting-btn" type="submit" value="Create" />
                             </div>
