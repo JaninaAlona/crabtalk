@@ -20,7 +20,7 @@ label {
 .meeting-btn {
   width: 100px;
   height: 40px;
-  background-color: rgba(230, 101, 101, 0.87);
+  background-color: rgba(235, 9, 9, 0.87);
   border-radius: 6px;
   font-size: 1.4em;
   font-family: 'Oswald', sans-serif;
@@ -46,6 +46,10 @@ label {
   display: flex;
   column-gap: 20px;
   justify-content: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .create-meet {
@@ -55,4 +59,66 @@ label {
   flex-wrap: wrap;
   justify-content: center;
   flex-direction: column;
+}
+
+.checkbox-label {
+  display: flex;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.checkbox-label input {
+  opacity: 0;
+  height: 0;
+  width: 0;
+  position: absolute;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #000000;
+}
+
+/* On mouse-over */
+.checkbox-label:hover input ~ .checkmark {
+  background-color: #665757;
+}
+
+.checkbox-label input:checked ~ .checkmark {
+  background-color: #ffffff;
+}
+
+/* checkmark creation  */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show checkmark when checked */
+.checkbox-label input:checked ~ .checkmark:after {
+  display: flex;
+}
+
+/* checkmark/indicator */
+.checkbox-label .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid rgb(0, 0, 0);
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
 }
