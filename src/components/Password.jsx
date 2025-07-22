@@ -14,11 +14,11 @@ function Password(props) {
     }
     
     return (
-        <>
+        <div className="welcome-gui-con">
             <label htmlFor={props.pwID}>{props.pwLabel}</label>
             <input ref={pwInput} className="welcome-input" type="password" id={props.pwID} name={props.pwName} placeholder="none" />
             <CustomCheckbox ref={showPWToggle} id={props.id} name={props.name} htmlFor={props.htmlFor} label={props.label} value={props.value} checked={props.checked}onChange={onPWVisibilityChange} />
-        </>
+        </div>
     )
 }
 
