@@ -1,9 +1,20 @@
+import { getSHA256Hash } from "boring-webcrypto-sha256";
 import Password from './Password.jsx';
 import MeetingType from './MeetingType.jsx';
 import Participants from './Participants.jsx';
 
 function CreateMeeting() {
 
+    async function getSHA256Hash(input) {
+        const textAsBuffer = new TextEncoder().encode(input);
+        const hashBuffer = await window.crypto.subtle.digest("SHA-256", textAsBuffer);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hash = hashArray
+            .map((item) => item.toString(16).padStart(2, "0"))
+            .join("");
+        return hash;
+    }
+    
     function randomChar(length, chars) {
         var result           = '';
         var characters       = chars;
@@ -14,7 +25,7 @@ function CreateMeeting() {
         return result;
     }
 
-    function calculateMeetingLink() {
+    async function calculateMeetingLink() {
         let meetingLink = '';
         const performanceTime = performance.now()
         const systemTime = new Date().getTime()
@@ -23,7 +34,6 @@ function CreateMeeting() {
         const oneDigitRand = Math.random() * 10
         const twoDigitRand = Math.random() * 100 
         const threeDigitRand = Math.random() * 1000
-        console.log(threeDigitRand)
         const randomCharNoCaseDigitsA = randomChar(4, 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789')
         const upperCaseA = randomChar(12, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')
         const lowerCaseA = randomChar(2, 'abcdefghijklmnopqrstuvwxyz')
@@ -36,7 +46,8 @@ function CreateMeeting() {
         let subB = calcString.substring(30, 44)
         let subC = calcString.substring(50, 80)
         let subD = calcString.substring(98, calcString.length)
-        meetingLink = subA + subB + subC + subD
+        const input = subA + subB + subC + subD
+        meetingLink = await getSHA256Hash(input)
         return meetingLink
     }   
 
