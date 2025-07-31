@@ -11,8 +11,10 @@ function JoinMeeting() {
             <fieldset>
                 <legend>Join meeting</legend>
                 <div className="create-meet">
-                    <div className="welcome-gui-con">
-                        <input className="meeting-btn" type="submit" value="Join" />
+                    <div className="welcome-gui-con vertical">
+                        <div className='vertical'>
+                            <input className="meeting-btn" type="submit" value="Join" />
+                        </div>
                         <input className="meeting-link welcome-input" placeholder="Meeting link" />
                     </div>
                     <div className="welcome-gui-con">
