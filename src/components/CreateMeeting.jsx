@@ -40,13 +40,14 @@ function CreateMeeting({transferLink, submitTrigger}) {
         const randomCharNoCaseDigitsB = randomChar(16, 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789')
         const upperCaseB = randomChar(8, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')
         const lowerCaseB = randomChar(10, 'abcdefghijklmnopqrstuvwxyz')
-        const calcString = lowerCaseA + "#" + performanceTime + "#" + lowerCaseB + "#" + upperCaseA + "#" + systemTime + "#" + smallestRand + "#" + oneDigitRand + "#" + twoDigitRand + "#" + randomCharNoCaseDigitsB + "#" + upperCaseB + "#" + threeDigitRand + "#" + randomCharNoCaseDigitsA 
+        const calcString = lowerCaseA + performanceTime + lowerCaseB + upperCaseA + systemTime + smallestRand + oneDigitRand + twoDigitRand + randomCharNoCaseDigitsB + upperCaseB + threeDigitRand + randomCharNoCaseDigitsA 
 
         let subA = calcString.substring(0, 21)
         let subB = calcString.substring(30, 44)
         let subC = calcString.substring(50, 80)
         let subD = calcString.substring(98, calcString.length)
         const input = subA + subB + subC + subD
+        console.log(input)
         meetingLink = await getSHA256Hash(input)
         return meetingLink
     }   
