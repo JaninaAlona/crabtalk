@@ -3,7 +3,7 @@ import Password from './Password.jsx';
 import MeetingType from './MeetingType.jsx';
 import Participants from './Participants.jsx';
 
-function CreateMeeting() {
+function CreateMeeting({transferLink, submitTrigger}) {
 
     async function getSHA256Hash(input) {
         const textAsBuffer = new TextEncoder().encode(input);
@@ -51,9 +51,11 @@ function CreateMeeting() {
         return meetingLink
     }   
 
-    function createSubmit(e) {
+    async function createSubmit(e) {
         e.preventDefault()
-        const meetingLink = calculateMeetingLink()
+        const meetingLink = await calculateMeetingLink()
+        console.log(meetingLink)
+        transferLink(meetingLink)
     }
 
     return (

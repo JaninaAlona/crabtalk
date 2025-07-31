@@ -1,7 +1,7 @@
 import Password from './Password.jsx';
 
-function JoinMeeting() {
-    
+function JoinMeeting({transferLink}) {
+
     function handleSubmit(e) {
         e.preventDefault()
     }
@@ -15,7 +15,7 @@ function JoinMeeting() {
                         <div className='vertical'>
                             <input className="meeting-btn" type="submit" value="Join" />
                         </div>
-                        <input className="meeting-link welcome-input" placeholder="Meeting link" />
+                        <input className="meeting-link welcome-input" placeholder="Meeting link" defaultValue={transferLink} />
                     </div>
                     <div className="welcome-gui-con">
                         <Password pwID="meetingPW" pwLabel="Password:" pwName="meetingPW" id="showMeetingPW" name="hideMeetingPW" htmlFor="showMeetingPW" label="Show Password" value="usePW" />
