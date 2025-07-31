@@ -14,7 +14,7 @@ label {
 }
 
 .meeting-link {
-  width: 400px;
+  width: 500px;
 }
 
 .meeting-btn {
@@ -44,7 +44,7 @@ label {
 
 .welcome-gui-con {
   display: flex;
-  column-gap: 20px;
+  gap: 20px 20px;
   justify-content: center;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -54,11 +54,18 @@ label {
 
 .create-meet {
   display: flex;
+  justify-content: center;
+  flex-direction: column;
   gap: 20px 20px;
   align-content: space-around;
   flex-wrap: wrap;
-  justify-content: center;
+}
+
+.vertical {
   flex-direction: column;
+  justify-content: center;
+  align-content: space-around;
+  flex-wrap: wrap;
 }
 
 .checkbox-label {
