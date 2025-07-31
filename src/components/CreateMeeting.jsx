@@ -16,9 +16,9 @@ function CreateMeeting({transferLink, submitTrigger}) {
     }
     
     function randomChar(length, chars) {
-        var result           = '';
-        var characters       = chars;
-        var charactersLength = characters.length;
+        let result           = '';
+        const characters       = chars;
+        const charactersLength = characters.length;
         for ( var i = 0; i < length; i++ ) {
             result += characters.charAt(Math.floor(Math.random() * charactersLength));
         }
