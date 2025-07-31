@@ -6,14 +6,14 @@ function JoinMeeting() {
         e.preventDefault()
     }
      
-    return(
+    return (
         <form onSubmit={handleSubmit}>
             <fieldset>
                 <legend>Join meeting</legend>
                 <div className="create-meet">
                     <div className="welcome-gui-con">
-                        <input className="meeting-link welcome-input" placeholder="Meeting link" />
                         <input className="meeting-btn" type="submit" value="Join" />
+                        <input className="meeting-link welcome-input" placeholder="Meeting link" />
                     </div>
                     <div className="welcome-gui-con">
                         <Password pwID="meetingPW" pwLabel="Password:" pwName="meetingPW" id="showMeetingPW" name="hideMeetingPW" htmlFor="showMeetingPW" label="Show Password" value="usePW" />

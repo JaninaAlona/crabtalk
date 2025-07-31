@@ -13,6 +13,8 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "mongodb": "^6.18.0",
+    "node": "^20.19.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
