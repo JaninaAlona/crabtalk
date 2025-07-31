@@ -3,8 +3,6 @@ import './App.css'
 import Welcome from './components/Welcome.jsx'
 
 function App() {
-  const [message, setMessage] = useState('');  
-
     useEffect(() => {  
         fetch('/api/meetingvals')  
             .then((res) => console.log("Something coming")) 
@@ -13,7 +11,6 @@ function App() {
   return (
     <>
       <h1>Crabtalk</h1>
-      <div>{message}</div>
       <Welcome />
     </>
   )
