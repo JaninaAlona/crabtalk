@@ -8,6 +8,6 @@ beApp.use(cors())
 beApp.use(express.json())
 
 beApp.use("api/meetingvals", meetingvals)
-beApp.use('/{*any}', (req, res) => res.status(404).send("Not found"))
+beApp.use('/{*any}', (req, res) => res.status(404).json({ error: "Not found" }))
 
 export default beApp

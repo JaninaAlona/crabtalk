@@ -1,8 +1,7 @@
-import beApp from "./server.js"
-import mongodb from "mongodb"
-// import ReviewsDAO from "./dao/reviewsDAO.js" //////////////////////////////
+import beApp from "./server.js";
+import mongodb from "mongodb";
+import Meetingvals from "./api/meetingvals.js"; 
 
-// const { MongoClient, ServerApiVersion } = require('mongodb');
 const mongo_username = encodeURIComponent( process.env.DB_USER );
 const mongo_password = encodeURIComponent( process.env.DB_PASSWORD );
 const uri =  `mongodb+srv://${mongo_username}:${mongo_password}@crabtalkcluster.xyy9v4b.mongodb.net/?retryWrites=true&w=majority&appName=crabtalkcluster` 

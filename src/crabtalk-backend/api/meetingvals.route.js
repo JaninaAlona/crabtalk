@@ -1,10 +1,8 @@
-import express from "express"
+import express from "express";
+import MeetingValsCtrl from "./meetingvals.controller.js"
 
 const route = express.Router()
 
-route.route("/api/meetingvals").post(function(req, res, next) {
-    res.send({'message': 'Hello from the backend!'}) 
-    next()
-});
+route.route("/api/meetingvals").post(MeetingValsCtrl.apiPostMeetingvals)
 
 export default route
