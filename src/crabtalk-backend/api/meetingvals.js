@@ -25,7 +25,7 @@ export default class Meetingvals {
             return await meetingvals.insertOne(meetingvalsDoc)
         } catch (e) {
             console.error(`Unable to post meetingvals: ${e}`)
-            return { error.e }
+            return { error: e }
         }
     }
 
