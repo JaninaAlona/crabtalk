@@ -1,0 +1,2 @@
+CREATE DATABASE testcrabdb;
+GRANT ALL PRIVILEGES ON DATABASE testcrabdb TO testcrab;
