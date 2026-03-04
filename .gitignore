@@ -7,7 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
+
 dist-ssr
 *.local
 
@@ -23,3 +23,8 @@ dist-ssr
 *.sw?
 
 crabtalk-backend/.env
+crabtalk-backend/package-lock.json
+crabtalk-backend/node_modules/
+
+crabtalk-frontend/package-lock.json
+crabtalk-frontend/node_modules/

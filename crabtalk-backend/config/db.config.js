@@ -1,0 +1,14 @@
+export default {
+    HOST: process.env.DB_HOST,
+    USER: process.env.TEST_DB_USER,
+    PASSWORD: process.env.TEST_DB_PASSWORD,
+    DB: process.env.TEST_DB_NAME,
+    dialect: "postgres",
+    PORT: process.env.DB_PORT,
+    pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000,
+    },
+};
