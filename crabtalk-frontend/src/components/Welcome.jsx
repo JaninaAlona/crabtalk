@@ -6,7 +6,7 @@ function Welcome() {
     const [link, setLink] = useState('');
     
     const transferLink = (transferredLink) => {
-        setLink(transferredLink)
+        setLink(transferredLink);
     }
     
     return (

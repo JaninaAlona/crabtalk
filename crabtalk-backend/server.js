@@ -1,13 +1,32 @@
-import express from "express"
-import cors from "cors"
-import meetingvals from "./api/meetingvals.route.js"
-
-const beApp = express()
-
-beApp.use(cors())
-beApp.use(express.json())
-
-beApp.use("api/meetingvals", meetingvals)
-beApp.use('/{*any}', (req, res) => res.status(404).json({ error: "Not found" }))
-
-export default beApp
+import express from "express";
+import cors from "cors";
+import db from "./models/models.js";
+import meetingsRoutes from "./routes/meetings.routes.js";
+ 
+const app = express();
+ 
+const corsOptions = {
+    origin: "http://localhost:5173",
+};
+ 
+app.use(cors(corsOptions));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+ 
+// Simple route
+app.get("/", (req, res) => {
+    res.json({ message: "Welcome to Crabtalk." });
+});
+ 
+// Routes
+meetingsRoutes(app);
+ 
+// Sync database
+db.sequelize.sync().then(() => {
+    console.log("Synced db.");
+});
+// backend running on 8080
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}.`);
+});

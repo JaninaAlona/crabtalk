@@ -1,8 +1,8 @@
-function CustomCheckbox(props) {
+function CustomCheckbox({htmlFor, label, id, name, value, checked, onChange}) {
     return (
         <>
-            <label className="checkbox-label" htmlFor={props.htmlFor}>{props.label}
-                <input type="checkbox" id={props.id} name={props.name} value={props.value} checked={props.checked} onChange={props.onChange} />
+            <label className="checkbox-label" htmlFor={htmlFor}>{label}
+                <input type="checkbox" id={id} name={name} value={value} checked={checked} onChange={onChange} />
                 <span className="checkmark"></span>
             </label>
         </>

@@ -1,47 +1,25 @@
-import { useState } from "react";
-import { useRef } from 'react';
+import { useState, useEffect } from "react";
 import CustomCheckbox from './CustomCheckbox.jsx';
 
 function MeetingType() {
     
-    let [checkedChat, setCheckedChat] = useState(true)
-    const handleCheckedChatChange = e => {
-        setCheckedChat(e.target.checked)
-        if (!chatRef.current.checked && !voiceRef.current.checked && !videoRef.current.checked) {
-            setCheckedChat(true)
+    let [checkedChat, setCheckedChat] = useState(true);
+    let [checkedVoice, setCheckedVoice] = useState(false);
+    let [checkedVideo, setCheckedVideo] = useState(false);
+
+    useEffect(() => {
+        if (!checkedVoice && !checkedVideo) {
+            setCheckedChat(true);
         }
-    }
-    let [checkedVoice, setCheckedVoice] = useState(false)
-    const handleCheckedVoiceChange = e => {
-        setCheckedVoice(e.target.checked)
-        if (!chatRef.current.checked && !voiceRef.current.checked && !videoRef.current.checked) {
-            setCheckedVoice(true)
-        }
-        if (voiceRef.current.checked && videoRef.current.checked) {
-            setCheckedVideo(false)
-        }
-    }
-    let [checkedVideo, setCheckedVideo] = useState(false)
-    const handleCheckedVideoChange = e => {
-        setCheckedVideo(e.target.checked)
-        if (!chatRef.current.checked && !voiceRef.current.checked && !videoRef.current.checked) {
-            setCheckedVideo(true)
-        }
-        if (voiceRef.current.checked && videoRef.current.checked) {
-            setCheckedVoice(false)
-        }
-    }
-    let chatRef = useRef(null)
-    let voiceRef = useRef(null)
-    let videoRef = useRef(null)
+    }, [checkedVoice, checkedVideo]);
 
     return (
         <div className="welcome-gui-con">
-            <CustomCheckbox ref={chatRef} id="use-chat" htmlFor="use-chat" name="message-type" value="chat" label="Text Chat" checked={checkedChat} onChange={handleCheckedChatChange} />
-            <CustomCheckbox ref={voiceRef} id="use-voice" htmlFor="use-voice" name="message-type" value="voice" label="Audio Call" checked={checkedVoice} onChange={handleCheckedVoiceChange} />
-            <CustomCheckbox ref={videoRef} id="use-video" htmlFor="use-video" name="message-type" value="video" label="Video Call" checked={checkedVideo} onChange={handleCheckedVideoChange} />
+            <CustomCheckbox id="use-chat" htmlFor="use-chat" name="message-type" value="chat" label="Text Chat" checked={checkedChat} onChange={e => { setCheckedChat(e.target.checked); }} />
+            <CustomCheckbox id="use-voice" htmlFor="use-voice" name="message-type" value="voice" label="Audio Call" checked={checkedVoice} onChange={e => { setCheckedVoice(e.target.checked); }} />
+            <CustomCheckbox id="use-video" htmlFor="use-video" name="message-type" value="video" label="Video Call" checked={checkedVideo} onChange={e => { setCheckedVideo(e.target.checked); }} />
         </div>
     )
 }
 
-export default MeetingType
+export default MeetingType;

@@ -1,5 +1,5 @@
 export default (sequelize, Sequelize) => {
-    const Talkers = sequelize.define("talkers", {
+    const Meetings = sequelize.define("meetings", {
         meeting_id: {
             type: DataTypes.UUID.V4,
             defaultValue: Sequelize.UUIDV4,
@@ -37,5 +37,5 @@ export default (sequelize, Sequelize) => {
             defaultValue: sequelize.fn('NOW')
         },
     });
-    return Talkers;
+    return Meetings;
 };

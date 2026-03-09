@@ -3,7 +3,7 @@ import Password from './Password.jsx';
 function JoinMeeting({transferLink}) {
 
     function handleSubmit(e) {
-        e.preventDefault()
+        e.preventDefault();
     }
      
     return (

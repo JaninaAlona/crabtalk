@@ -17,16 +17,16 @@ function CreateMeeting({transferLink}) {
 
     async function generateMeetingLink() {
         const uuid = uuidv4();
-        console.log(`UUID: ${uuid}` +` length:` + uuid.length)
-        const meetingLink = await getSHA256Hash(uuid)
-        return meetingLink
+        console.log(`UUID: ${uuid}` +` length:` + uuid.length);
+        const meetingLink = await getSHA256Hash(uuid);
+        return meetingLink;
     }   
 
     async function createSubmit(e) {
-        e.preventDefault()
-        const meetingLink = await generateMeetingLink()
-        console.log(`Meeting Link: ${meetingLink}`)
-        transferLink(meetingLink)
+        e.preventDefault();
+        const meetingLink = await generateMeetingLink();
+        console.log(`Meeting Link: ${meetingLink}`);
+        transferLink(meetingLink);
     }
 
     return (
