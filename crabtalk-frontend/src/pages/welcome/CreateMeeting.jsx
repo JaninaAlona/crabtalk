@@ -3,13 +3,16 @@ import Password from './Password';
 import MeetingType from './MeetingType';
 import Participants from './Participants';
 import MeetingsService from "../../services/meetings.service";
-import { useRef, useState, useContext } from 'react';
+import { useRef, useState, useContext, useEffect } from 'react';
 import DefaultMeeting from '../../contexts/DefaultMeeting';
 import { MeetingContext } from '../../contexts/Contexts';
 
 function CreateMeeting({ transferLink }) {
     const { meeting, setMeeting } = useContext(MeetingContext);
     const passwordRef = useRef(null);
+    const meetingTypeRef = useRef(null);
+    const maxTalkersRef = useRef(null);
+
     const [submitted, setSubmitted] = useState(false);
     const [meeting_id, setMeetingId] = useState(DefaultMeeting.meeting_id);
     const [meeting_link, setMeetingLink] = useState(DefaultMeeting.meeting_link);
@@ -21,6 +24,17 @@ function CreateMeeting({ transferLink }) {
     const [chat_in_progress, setChatInProgress] = useState(DefaultMeeting.chat_in_progress);
     const [chat_started, setChatStarted] = useState(DefaultMeeting.chat_started);
     const [chat_created, setChatCreated] = useState(DefaultMeeting.chat_created);
+
+    useEffect(() => {
+        console.log("mid: " + meeting_id);
+        console.log("mli: " + meeting_link);
+        console.log("mPw: " + meeting_password);
+        console.log("chat: " + text_chat);
+        console.log("voice: " + audio_chat);
+        console.log("video: " + video_chat);
+        console.log("max: "+ max_talkers);
+        console.log("progr: " + chat_in_progress);
+    }, [meeting_id, meeting_link, meeting_password, text_chat, audio_chat, video_chat, max_talkers, chat_in_progress]);
 
     async function getSHA256Hash(input) {
         const textAsBuffer = new TextEncoder().encode(input);
@@ -40,41 +54,56 @@ function CreateMeeting({ transferLink }) {
 
     function readMeetingProperty(ref, property) {
         const currentRef = ref.current;
-        console.log("property: " + property);
+        console.log(currentRef);
         let meetingProperty;
         if (currentRef) {
             meetingProperty = currentRef[property];
+            console.log(meetingProperty);
         }
         return meetingProperty;
+    }
+
+    function readEncapsulatedMeetingProperty(ref, outerProperty, innerProperty) {
+        const currentRef = ref.current;
+        let encapsulatedMeetingProperty;
+        if (currentRef) {
+            let meetingProperty = currentRef[outerProperty];
+            if (meetingProperty) {
+                encapsulatedMeetingProperty = meetingProperty[innerProperty];
+            }
+        }
+        return encapsulatedMeetingProperty;
     }
 
     async function prepareMeeting() {
         const meetingLink = await generateMeetingLink();
         transferLink(meetingLink);
-        const newMeeting = () => {
-            setMeetingId(uuidv4());
-            setMeetingLink(meetingLink);
-            setMeetingPassword(readMeetingProperty(passwordRef, 'pwValue'));
-            console.log(readMeetingProperty(passwordRef, 'pwValue'))
-        }
+        setMeetingId(uuidv4());
+        setMeetingLink(meetingLink);
+        setMeetingPassword(readMeetingProperty(passwordRef, 'value'));
+        setTextChat(readEncapsulatedMeetingProperty(meetingTypeRef, 'chat', 'value'));
+        setAudioChat(readEncapsulatedMeetingProperty(meetingTypeRef, 'voice', 'value'));
+        setVideoChat(readEncapsulatedMeetingProperty(meetingTypeRef, 'video', 'value'));
+        setMaxTalkers(readMeetingProperty(maxTalkersRef, 'value'));
+        setChatInProgress(false);
     }    
 
-    const saveMeeting = () => {
-        const data = { meeting_id, meeting_link, meeting_password, text_chat, audio_chat, video_chat, max_talkers, chat_in_progress, chat_started, chat_created };
-        MeetingsService.create(data)
-            .then((response) => {
-                console.log(response.data);
-                setSubmitted(true);
-            })
-            .catch((e) => {
-                console.log(e);
-            });
-    }
+    // const saveMeeting = () => {
+    //     const data = { meeting_id, meeting_link, meeting_password, text_chat, audio_chat, video_chat, max_talkers, chat_in_progress, chat_started, chat_created };
+    //     MeetingsService.create(data)
+    //         .then((response) => {
+    //             console.log(response.data);
+    //             setSubmitted(true);
+    //         })
+    //         .catch((e) => {
+    //             console.log(e);
+    //         });
+    // }
 
     async function createSubmit(e) {
         e.preventDefault();
         prepareMeeting();
-        saveMeeting();
+        //saveMeeting();
     }
 
     return (
@@ -85,8 +114,8 @@ function CreateMeeting({ transferLink }) {
                         <div className="welcome-gui-con">
                             <input className="meeting-btn" type="submit" value="Create" />
                         </div>
-                        <MeetingType />
-                        <Participants id="people" htmlFor="people" name="participants" label="Max. crabtalkers:" />
+                        <MeetingType ref={meetingTypeRef} />
+                        <Participants ref={maxTalkersRef} id="people" htmlFor="people" name="participants" label="Max. crabtalkers:" />
                         <Password ref={passwordRef} pwID="setPW" pwLabel="Use password:" pwName="createMeetingPW" id="showPW" name="hidePW" htmlFor="showPW" label="Show Password" />
                     </div>
                 </fieldset>

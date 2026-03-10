@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, forwardRef } from 'react';
 
-function Participants({ htmlFor, label, id, name }) {
+const Participants = forwardRef(function Participants(props, ref) {
+    const { htmlFor, label, id, name } = props;
     const [maxTalkers, setMaxTalkers] = useState(100);
     useEffect(() => {
         if (maxTalkers < 2) {
@@ -14,9 +15,9 @@ function Participants({ htmlFor, label, id, name }) {
     return (
         <div className="welcome-gui-con">
             <label htmlFor={htmlFor}>{label}</label>
-            <input className="welcome-input" type="number" id={id} name={name} value={maxTalkers} min="2" max="100" onChange={e => { setMaxTalkers(e.target.value); }} />
+            <input ref={ref} className="welcome-input" type="number" id={id} name={name} value={maxTalkers} min="2" max="100" onChange={e => { setMaxTalkers(e.target.value); }} />
         </div>
     )
-}
+});
 
 export default Participants;

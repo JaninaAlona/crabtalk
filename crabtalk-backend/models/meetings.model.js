@@ -2,7 +2,6 @@ export default (sequelize, Sequelize) => {
     const Meetings = sequelize.define("meetings", {
         meeting_id: {
             type: DataTypes.UUID.V4,
-            defaultValue: Sequelize.UUIDV4,
             primaryKey: true,
         },
         meeting_link: {
@@ -36,7 +35,6 @@ export default (sequelize, Sequelize) => {
         },
         chat_created: {
             type: Sequelize.DATE,
-            defaultValue: sequelize.fn('NOW')
         },
     });
     return Meetings;

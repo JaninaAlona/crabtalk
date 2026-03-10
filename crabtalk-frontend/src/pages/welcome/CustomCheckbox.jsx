@@ -1,9 +1,9 @@
-function CustomCheckbox({ htmlFor, label, id, name, value, checked, onChange }) {
+function CustomCheckbox({ ref, htmlFor, label, id, name, value, checked, onChange }) {
 
     return (
         <>
             <label className="checkbox-label" htmlFor={htmlFor}>{label}
-                <input type="checkbox" id={id} name={name} value={value} checked={checked} onChange={onChange} />
+                <input ref={ref} type="checkbox" id={id} name={name} value={value} checked={checked} onChange={onChange} />
                 <span className="checkmark"></span>
             </label>
         </>
