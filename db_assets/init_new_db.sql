@@ -1,6 +1,7 @@
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 CREATE TABLE meetings (
     meeting_id uuid DEFAULT uuid_generate_v4 () PRIMARY KEY,
+    meeting_link VARCHAR(64) NOT NULL,
     meeting_password VARCHAR(50),
     text_chat BOOLEAN NOT NULL DEFAULT TRUE,
     audio_chat BOOLEAN NOT NULL DEFAULT FALSE,

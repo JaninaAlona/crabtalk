@@ -4,7 +4,9 @@ export default (sequelize, Sequelize) => {
             type: DataTypes.UUID.V4,
             defaultValue: Sequelize.UUIDV4,
             primaryKey: true,
-            
+        },
+        meeting_link: {
+            type: Sequelize.STRING,
         },
         meeting_password: {
             type: Sequelize.STRING,

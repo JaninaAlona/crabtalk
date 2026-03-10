@@ -1,4 +1,5 @@
-function CustomCheckbox({htmlFor, label, id, name, value, checked, onChange}) {
+function CustomCheckbox({ htmlFor, label, id, name, value, checked, onChange }) {
+
     return (
         <>
             <label className="checkbox-label" htmlFor={htmlFor}>{label}
@@ -9,4 +10,4 @@ function CustomCheckbox({htmlFor, label, id, name, value, checked, onChange}) {
     )
 }
 
-export default CustomCheckbox
+export default CustomCheckbox;

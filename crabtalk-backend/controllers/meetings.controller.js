@@ -1,11 +1,11 @@
 import db from "../models/models.js"
 
-const Op = db.Sequelize.Op;
+//const Op = db.Sequelize.Op;
 const Meetings = db.meetings;
 
 export const create = (req, res) => {
     // Validate request
-    if (!req.body.title) {
+    if (!req.body.meeting_link) {
         res.status(400).send({
             message: "Content can not be empty!",
         });
@@ -15,6 +15,7 @@ export const create = (req, res) => {
     // Create a Meeting
     const meeting = {
         meeting_id: req.body.meeting_id,
+        meeting_link: req.body.meeting_link,
         meeting_password: req.body.meeting_password,
         text_chat: req.body.text_chat,
         audio_chat: req.body.audio_chat,

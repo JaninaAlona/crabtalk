@@ -1,20 +1,17 @@
-import React, { useEffect } from 'react'; 
 import './App.css'
-import Welcome from './components/Welcome.jsx'
+import { MeetingProvider } from './contexts/MeetingProvider.jsx';
+import Welcome from './pages/welcome/Welcome.jsx';
 
 function App() {
-    useEffect(() => {  
-        fetch('/api/meetingvals')  
-          //.then((res) => console.log("Something coming"))
-          .then(() => console.log("Something coming")) 
-    }, []);  
 
   return (
     <>
-      <h1>Crabtalk</h1>
-      <Welcome />
+      <MeetingProvider>
+        <h1>Crabtalk</h1>
+        <Welcome />
+      </MeetingProvider>
     </>
   )
 }
 
-export default App
+export default App;
