@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import CustomCheckbox from './CustomCheckbox.jsx';
+import CustomCheckbox from './CustomCheckbox';
 
 function MeetingType() {
     

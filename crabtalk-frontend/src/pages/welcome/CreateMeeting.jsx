@@ -1,13 +1,26 @@
 import { v4 as uuidv4 } from 'uuid';
-import Password from './Password.jsx';
-import MeetingType from './MeetingType.jsx';
-import Participants from './Participants.jsx';
+import Password from './Password';
+import MeetingType from './MeetingType';
+import Participants from './Participants';
 import MeetingsService from "../../services/meetings.service";
-import { MeetingContext } from "../../contexts/MeetingProvider.jsx";
-import { useContext } from 'react';
+import { useRef, useState, useContext } from 'react';
+import DefaultMeeting from '../../contexts/DefaultMeeting';
+import { MeetingContext } from '../../contexts/Contexts';
 
 function CreateMeeting({ transferLink }) {
-    const { state, dispatch } = useContext(MeetingContext);
+    const { meeting, setMeeting } = useContext(MeetingContext);
+    const passwordRef = useRef(null);
+    const [submitted, setSubmitted] = useState(false);
+    const [meeting_id, setMeetingId] = useState(DefaultMeeting.meeting_id);
+    const [meeting_link, setMeetingLink] = useState(DefaultMeeting.meeting_link);
+    const [meeting_password, setMeetingPassword] = useState(DefaultMeeting.meeting_password);
+    const [text_chat, setTextChat] = useState(DefaultMeeting.text_chat);
+    const [audio_chat, setAudioChat] = useState(DefaultMeeting.audio_chat);
+    const [video_chat, setVideoChat] = useState(DefaultMeeting.video_chat);
+    const [max_talkers, setMaxTalkers] = useState(DefaultMeeting.max_talkers);
+    const [chat_in_progress, setChatInProgress] = useState(DefaultMeeting.chat_in_progress);
+    const [chat_started, setChatStarted] = useState(DefaultMeeting.chat_started);
+    const [chat_created, setChatCreated] = useState(DefaultMeeting.chat_created);
 
     async function getSHA256Hash(input) {
         const textAsBuffer = new TextEncoder().encode(input);
@@ -25,16 +38,43 @@ function CreateMeeting({ transferLink }) {
         return meetingLink;
     }  
 
+    function readMeetingProperty(ref, property) {
+        const currentRef = ref.current;
+        console.log("property: " + property);
+        let meetingProperty;
+        if (currentRef) {
+            meetingProperty = currentRef[property];
+        }
+        return meetingProperty;
+    }
+
     async function prepareMeeting() {
-        const meetingLink = generateMeetingLink();
+        const meetingLink = await generateMeetingLink();
         transferLink(meetingLink);
-        dispatch({ type: 'set_meeting_link', payload: meetingLink });
-        console.log("meeting: " + state);
+        const newMeeting = () => {
+            setMeetingId(uuidv4());
+            setMeetingLink(meetingLink);
+            setMeetingPassword(readMeetingProperty(passwordRef, 'pwValue'));
+            console.log(readMeetingProperty(passwordRef, 'pwValue'))
+        }
+    }    
+
+    const saveMeeting = () => {
+        const data = { meeting_id, meeting_link, meeting_password, text_chat, audio_chat, video_chat, max_talkers, chat_in_progress, chat_started, chat_created };
+        MeetingsService.create(data)
+            .then((response) => {
+                console.log(response.data);
+                setSubmitted(true);
+            })
+            .catch((e) => {
+                console.log(e);
+            });
     }
 
     async function createSubmit(e) {
         e.preventDefault();
         prepareMeeting();
+        saveMeeting();
     }
 
     return (
@@ -47,7 +87,7 @@ function CreateMeeting({ transferLink }) {
                         </div>
                         <MeetingType />
                         <Participants id="people" htmlFor="people" name="participants" label="Max. crabtalkers:" />
-                        <Password pwID="setPW" pwLabel="Use password:" pwName="createMeetingPW" id="showPW" name="hidePW" htmlFor="showPW" label="Show Password" />
+                        <Password ref={passwordRef} pwID="setPW" pwLabel="Use password:" pwName="createMeetingPW" id="showPW" name="hidePW" htmlFor="showPW" label="Show Password" />
                     </div>
                 </fieldset>
             </form>

@@ -1,4 +1,4 @@
-import db from "../models/models.js"
+import db from "../models/models"
 
 //const Op = db.Sequelize.Op;
 const Meetings = db.meetings;

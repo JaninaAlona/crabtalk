@@ -1,4 +1,4 @@
-import * as meetings from "../controllers/meetings.controller.js";
+import * as meetings from "../controllers/meetings.controller";
 import express from "express";
  
 export default (app) => {

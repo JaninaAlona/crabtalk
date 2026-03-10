@@ -1,12 +1,3 @@
-# React + Vite
+# Crabtalk
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Crabtalk is a React Chat web app offering text, voice and video chat. The chat can be started by creating a meeting link and sending this link manually to participants. A meeting starts as soon as 2 crabtalkers (participants) joined the meeting. A maximum of 100 crabtalkers can join a meeting. The meeting link is only valid for a single meeting and the meeting ends as soon as there are less than 2 crabtalkers in a chat.

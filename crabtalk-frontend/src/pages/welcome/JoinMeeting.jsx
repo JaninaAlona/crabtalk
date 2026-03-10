@@ -1,4 +1,4 @@
-import Password from './Password.jsx';
+import Password from './Password';
 
 function JoinMeeting({ transferLink }) {
 
